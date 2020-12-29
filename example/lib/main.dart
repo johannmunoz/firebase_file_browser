@@ -31,6 +31,9 @@ class MyHomePage extends StatelessWidget {
     return FileBrowser(
       rootName: 'File Browser',
       firebaseStorage: _storage,
+      appBarColor: Colors.green,
+      appBarElevation: 0.0,
+      appBarTextStyle: TextStyle(fontStyle: FontStyle.italic),
     );
   }
 }

@@ -4,9 +4,15 @@ import 'package:flutter/material.dart';
 
 class FolderItem extends StatelessWidget {
   final Reference reference;
+  final double appBarElevation;
+  final Color appBarColor;
+  final TextStyle appBarTextStyle;
   const FolderItem({
     Key key,
     @required this.reference,
+    this.appBarElevation,
+    this.appBarColor,
+    this.appBarTextStyle,
   }) : super(key: key);
 
   @override
@@ -15,7 +21,12 @@ class FolderItem extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => BrowserView(reference: reference),
+            builder: (context) => BrowserView(
+              reference: reference,
+              appBarColor: appBarColor,
+              appBarElevation: appBarElevation,
+              appBarTextStyle: appBarTextStyle,
+            ),
           ),
         );
       },

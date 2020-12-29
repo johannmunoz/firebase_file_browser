@@ -6,14 +6,28 @@ import 'package:flutter/material.dart';
 class BrowserView extends StatelessWidget {
   final Reference reference;
   final String pathName;
+  final double appBarElevation;
+  final Color appBarColor;
+  final TextStyle appBarTextStyle;
 
-  const BrowserView({Key key, @required this.reference, this.pathName})
-      : super(key: key);
+  const BrowserView({
+    Key key,
+    @required this.reference,
+    this.pathName,
+    this.appBarElevation,
+    this.appBarColor,
+    this.appBarTextStyle,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(pathName ?? reference.name),
+        elevation: appBarElevation,
+        backgroundColor: appBarColor,
+        title: Text(
+          pathName ?? reference.name,
+          style: appBarTextStyle,
+        ),
       ),
       body: FutureBuilder<ListResult>(
         future: reference.listAll(),
@@ -41,7 +55,12 @@ class BrowserView extends StatelessWidget {
                     Wrap(
                       children: folders
                           .map(
-                            (e) => FolderItem(reference: e),
+                            (e) => FolderItem(
+                              reference: e,
+                              appBarColor: appBarColor,
+                              appBarElevation: appBarElevation,
+                              appBarTextStyle: appBarTextStyle,
+                            ),
                           )
                           .toList(),
                     ),
