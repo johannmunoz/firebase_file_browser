@@ -34,24 +34,26 @@ class BrowserView extends StatelessWidget {
               if (folders.isEmpty && documents.isEmpty) {
                 return Center(child: Text('Folder is empty'));
               }
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Wrap(
-                    children: folders
-                        .map(
-                          (e) => FolderItem(reference: e),
-                        )
-                        .toList(),
-                  ),
-                  Wrap(
-                    children: documents
-                        .map(
-                          (e) => FileItem(reference: e),
-                        )
-                        .toList(),
-                  ),
-                ],
+              return SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Wrap(
+                      children: folders
+                          .map(
+                            (e) => FolderItem(reference: e),
+                          )
+                          .toList(),
+                    ),
+                    Wrap(
+                      children: documents
+                          .map(
+                            (e) => FileItem(reference: e),
+                          )
+                          .toList(),
+                    ),
+                  ],
+                ),
               );
             }
           }
