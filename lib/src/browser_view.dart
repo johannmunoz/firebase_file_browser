@@ -19,7 +19,7 @@ class BrowserView extends StatelessWidget {
         future: reference.listAll(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            return Text('Error');
+            return Center(child: Text('Error'));
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
