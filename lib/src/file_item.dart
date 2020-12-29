@@ -1,5 +1,7 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:open_file/open_file.dart';
 
 class FileItem extends StatelessWidget {
   final Reference reference;
@@ -11,7 +13,11 @@ class FileItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => print('Open -> ${reference.fullPath}'),
+      onTap: () async {
+        final url = await reference.getDownloadURL();
+        var file = await DefaultCacheManager().getSingleFile(url);
+        await OpenFile.open(file.path);
+      },
       child: Container(
         width: 100.0,
         child: Padding(
